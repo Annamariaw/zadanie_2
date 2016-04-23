@@ -4,8 +4,9 @@ using namespace std;
 
 int main() 
 {
+	//czêœæ wstêpna - wejœcie do biblioteki, wybranie ¿¹danej czynnoœci
 	int decision; // zmienna do wyboru co chcemy zrobiæ w bibliotece
-	//int news=5; zmienna do wyboru katalogu
+
 		
 		cout << "Hello!" << endl;
 		cout <<"We welcome to the library." << endl;
@@ -20,7 +21,7 @@ int main()
 		cout <<"Please choose one of the option" << endl;
 
 		cin>> decision;
-		
+	
 	switch (decision)	
 	{
 		case 1:
@@ -30,13 +31,31 @@ int main()
 		case 3:
 			cout << "Goodbye." << endl; break;
 		default:
-			cout << "I don't undersand. Choose 1, 2 or 3." << endl; break;
-		}	
-		
-	if (decision==1)
+			cout << "I don't undersand. Choose 1, 2 or 3." << endl;
+			while (decision>3)
+			{
+			cin>> decision;
+		switch (decision)	
 	{
-		cout << "ABC" << endl;
+		case 1:
+			cout << "Welcome to the catalog." << endl; break;
+		case 2:
+			cout <<"Go to help." << endl; break;
+		case 3:
+			cout << "Goodbye." << endl; break;
+		default:
+			cout << "I don't undersand. Choose 1, 2 or 3." << endl;
 	}
+			} 
+			
+		//czêœæ katalog
+	
+		
+		//czêœæ pomoc
+			
+	}	
+		
+		
 
 	return 0;
 }
