@@ -1,2 +1,3 @@
-1. Mickiewicz Adam "Dziady"
-2. Mickiewicz Adam "Pan Tadeusz"
+Lp. Author           title              hire               return
+1. Mickiewicz Adam "Dziady"        15.05.2016             20.05.2016
+2. Mickiewicz Adam "Pan Tadeusz"    31.05.2016
