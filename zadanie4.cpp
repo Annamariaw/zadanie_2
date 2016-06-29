@@ -98,7 +98,17 @@ vector < human > osoby;
 			{
 				cout << "\n\n\nLista osob:\n";				// wypisuje tylko wpisane dane , po zamkniêciu i otworzeniu programu dane ulegaj¹ zniszczeniu
             fstream katalog;
-            katalog.open("ja.txt");  						//nie otwiera tego pliku
+            string linia;
+            katalog.open("ja.txt", ios::in); // otwarcie pliku
+			if(katalog.good()) // sprawdzamy czy plik istnieje
+			{
+			while(!katalog.eof())
+			{
+			getline(katalog, linia);
+			cout<< linia<< '\n';
+			}
+			}
+		
 			for( int i = 0; i < osoby.size(); i++ )
             {
                 cout << endl;
