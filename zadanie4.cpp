@@ -14,7 +14,11 @@ public:
     human( string xname, string xsurname, string xnumber );
 };
 
-void funkcja_open () // ta funkja dzia³a tylko po³owicznie - nie wypisuje danych z pliku tylko podaje komunikat z else
+//mimo najszczerszych chêci, ale nie uda³o mi siê z argumentem funkcji i referencj¹ - poddajê siê - wczytuje wszystko osobno poni¿ej
+
+
+
+/*void funkcja_open () // ta funkja dzia³a tylko po³owicznie - nie wypisuje danych z pliku tylko podaje komunikat z else
 {
 	string linia;
 	ifstream uchwyt;
@@ -27,7 +31,7 @@ void funkcja_open () // ta funkja dzia³a tylko po³owicznie - nie wypisuje danych
 					uchwyt.close ();
 											}
 				else cout << "Unable to open file"<<'\n'; 	
-}
+}*/
 void funkcja_catalog () //funkcja wczytuje pliki 
 {
 	string name;
@@ -39,21 +43,19 @@ void funkcja_catalog () //funkcja wczytuje pliki
 			cout << "quit - go to menu" << endl;// tutaj poproo u?ytkownika o nazwe pliku (ocie?ke) z danymi tj. katologiem
 		cin>> name;	
 			{
-					if(name=="author")
-					{
+				if(name=="author")
+					{	
+					string linia;
 					ifstream uchwyt ("dane.txt");
-					funkcja_open (); 						// nie dzia³a dla while 
-				 /*obiekt typu fstream (uchwyt do pliku) 
-				 if (uchwyt.is_open()) //otwieramy plik
+					if (uchwyt.is_open()) //otwieramy plik
 						{
 						while (getline(uchwyt,linia))
 							{
 								cout<< linia << endl;
 							}
-					uchwyt.close (); */
-					}                                         // niestety funkcja open nie otwiera pliku
-				//else cout << "Unable to open file"; 	
-				//}
+					uchwyt.close (); 						}                                         
+				else cout << "Unable to open file"; 	
+					}
 					
         			else if(name=="title")
            			{
@@ -83,7 +85,7 @@ void funkcja_catalog () //funkcja wczytuje pliki
 
 void funkcja_help ()
 {
-vector < human > osoba;
+vector < human > osoby;
     cout << "Baza Osob\n1.-Lista osob\n2.-Dodaj osobe\n3.-Wyjscie";
     char odp;
     do
@@ -92,29 +94,40 @@ vector < human > osoba;
         switch( odp )
         {
         case '1':
-           cout << "\n\n\nLista osob:\n";				// wypisuje tylko wpisane dane , po zamkniêciu i otworzeniu programu dane ulegaj¹ zniszczeniu
-            for( int i = 0; i < osoba.size(); i++ )
+        
+			{
+				cout << "\n\n\nLista osob:\n";				// wypisuje tylko wpisane dane , po zamkniêciu i otworzeniu programu dane ulegaj¹ zniszczeniu
+            fstream katalog;
+            katalog.open("ja.txt");  						//nie otwiera tego pliku
+			for( int i = 0; i < osoby.size(); i++ )
             {
                 cout << endl;
-                cout << "Name: " << osoba[ i ].name << endl;
-                cout << "Surname: " << osoba[ i ].surname << endl;
-                cout << "Number library card: " << osoba[ i ].number << endl;
+                cout << "Name: " << osoby[ i ].name << endl;
+                cout << "Surname: " << osoby[ i ].surname << endl;
+                cout << "Number library card: " << osoby[ i ].number << endl;
             } 
-            break;
+            katalog.close();
+			break;
+			}
         case '2': 			// nie wiem, jak zapisaæ do pliku - czy tutaj trzeba otworzyæ nowy plik?
 		{
 			cout << "\n\n\n|----DODAWANIE_OSOBY_DO_LISTY-----|";
-            cout << "\nName: ";
-            string odp_name;
+			fstream katalog;   
+			katalog.open ("ja.txt", ios::out|ios_base::app);
+			string odp_name;
+			getline (cin, odp_name); 	
+			cout << "\nName: ";
             cin >> odp_name;
+			katalog<<odp_name << '\n'; 
             cout << "Surname: ";
             string odp_surname;
             cin >> odp_surname;
             cout << "Number library card: ";
             string odp_number;
             cin >> odp_number;
-            osoba.push_back( human( odp_name, odp_surname, odp_number ) );
+            osoby.push_back( human( odp_name, odp_surname, odp_number ) );
             cout << "\n<***ZAKONCZONO_Z_SUKCESEM***>";
+            katalog.close ();
     	}
             break;
         }
@@ -182,9 +195,10 @@ while (decision>3)
  cout<< "napisz imiê" << endl;
 // cin>>name;     - to z kolei nie dopisuje do pliku            
 	fstream katalog;
-	katalog.open ("ja.txt", ios::out|ios::app);
+	katalog.open ("ja.txt", ios::out|ios_base::app);
 	getline (cin, name);
-	katalog<<name << '\n';  // jako osobny plik pozwala wpisywaæ imiona atutaj nie
+	cin>>name;
+	katalog<<name << '\n';  
 	katalog.close ();
 
  { 
@@ -208,33 +222,6 @@ else cout<<"plik nie istnieje";
 }
  getch();
  
- 
- /*----------- to dopiero rozgryzam */
-		
-		
-		
-			// stwórz w3asn1 funkcje w której wczytasz katalog 
-			// i tutaj j1 wywo3aj - kod bedzie czytelniejszy 
-			
-		
-		
-			// podpowiedzi szukaj w cPlusPlusMaterials\Kod\Arrays&Functions
-			// i plik functions.cpp i jeszcze w webinarium o wektorze
-			// np:
-	
-			// zamiast wektora mo?esz u?ya oczywiocie normalnych tablic ;)
-			// ale z wektorem mo?e bya proociej ;)
-	//		cout << "Welcome to the catalog." << endl; break;
-			
-			// tutaj zrób coo z katalogiem wg. Twojego pomys3u
-			// mo?esz np. wyowietlia, ale te? mo?esz umo?liwia u?ytkownikowi
-			// jak1o modyfikacje
-			// najlepiej stworzya funkcje w której zaimplementujesz to co chcia3abyo
-			// zrobia z katalogiem :)
-			
-			// jeoli nie bedziesz mia3a pomys3u co z tym zrobia to 
-			// pisz, a ja moge pomóc coo zaimplementowaa! 
-			
 	return 0;
 }
 
