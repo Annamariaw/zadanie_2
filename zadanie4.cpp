@@ -221,16 +221,16 @@ while (decision>3)
  	{
  		getline(katalog, linia);
  		cout<< linia<< '\n';
-	 }
-}
  if(katalog==NULL)   // nie wiem dlaczego to te¿ siê wykonuje na ekranie
  {
  	cout<<"plik jest pusty"; 	
 	katalog.close();
  }
+}
+}
 else cout<<"plik nie istnieje";
 }
- getch();
+getch();
  
 	return 0;
 }
